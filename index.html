@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tammy · AI Assistant · White Label</title>
+<meta name="description" content="A white-label AI assistant chat with live agent handoff: 31 screens, a design system and two working React apps by Ticiana Paura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--pink:#f8e7e6;--card:#fbf0ef;--line:#efdcdb;--text:#1d1b1b;--muted:#6b6060;--blue:#0a66c2;--blue2:#004182;--bluebg:#e3eefa}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.mono{font-family:"JetBrains Mono",monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;gap:12px}
+nav .logo{color:var(--text);font-weight:700} nav .logo b{color:var(--blue)}
+nav ul{display:flex;gap:20px;list-style:none;font-size:14px} nav ul a{color:var(--muted)}
+.hero{padding:64px 0 48px;border-bottom:1px solid var(--line)}
+.back{font-size:14px;display:inline-block;margin-bottom:22px}
+.kicker{font-size:13px;color:var(--muted);margin-bottom:10px}
+h1{font-family:"JetBrains Mono",monospace;font-size:clamp(30px,5vw,46px);line-height:1.15;margin-bottom:16px}
+h1 .hl{color:var(--blue)}
+.lead{color:var(--muted);font-size:18px;max-width:720px;margin-bottom:20px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 11px;border-radius:999px;background:var(--pink)}
+.tag.b{background:var(--bluebg);color:var(--blue2)}
+.note{display:flex;gap:10px;align-items:flex-start;font-size:14px;background:var(--bluebg);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:8px;padding:10px 14px;max-width:720px;margin-bottom:24px}
+.note svg{flex:none;width:18px;height:18px;fill:var(--blue);margin-top:1px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:"JetBrains Mono",monospace;font-size:14px;padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--text);background:#fff}
+.btn:hover{border-color:var(--blue);text-decoration:none}
+.btn.primary{background:var(--text);color:#fff;border-color:var(--text)} .btn.primary:hover{background:var(--blue);border-color:var(--blue)}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+h2{font-family:"JetBrains Mono",monospace;font-size:24px;margin-bottom:10px} h2::before{content:"// ";color:var(--blue)}
+.sub{color:var(--muted);max-width:720px;margin-bottom:28px}
+.demos{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.demo h3{font-size:16px;margin-top:10px} .demo p{color:var(--muted);font-size:15px;max-width:380px}
+.device{width:min(100%,406px);aspect-ratio:406/860;border:8px solid var(--text);border-radius:36px;overflow:hidden;background:#222;box-shadow:0 18px 40px rgba(29,27,27,.18);position:relative}
+.device iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform-origin:0 0}
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{font-family:"JetBrains Mono",monospace;font-size:14px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--text)}
+.tab[aria-selected="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px}
+.shot{display:flex;flex-direction:column;gap:8px}
+.phone-mini{position:relative;display:block;aspect-ratio:390/844;border:5px solid var(--text);border-radius:18px;overflow:hidden;background:#222;transition:transform .2s}
+.phone-mini:hover{transform:translateY(-3px)}
+.phone-mini iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform-origin:0 0;pointer-events:none}
+.shot figcaption{font-size:13px;color:var(--muted)} .shot figcaption .mono{color:var(--blue)}
+.panel[hidden]{display:none}
+.ds{display:grid;grid-template-columns:1fr 1fr;gap:22px} @media (max-width:760px){.ds{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.box h3{font-family:"JetBrains Mono",monospace;font-size:16px;margin-bottom:14px}
+.swatches{list-style:none;display:grid;gap:8px}
+.sw{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;font-size:13px}
+.chip{width:28px;height:28px;border-radius:6px;border:1px solid rgba(0,0,0,.08)}
+.wl{margin-left:8px;font-size:11px;background:var(--bluebg);color:var(--blue2);padding:1px 7px;border-radius:999px}
+.val{color:var(--muted)}
+.typo{list-style:none;display:grid;gap:12px;background:#222;color:#e6edf3;border-radius:10px;padding:18px;font-family:Inter,system-ui,sans-serif}
+.typo li{display:flex;flex-direction:column;gap:2px} .typo .meta{font-size:11px;color:#8a8a8a}
+.comps{list-style:none;display:grid;gap:10px;font-size:14px}
+.comps li{display:grid;grid-template-columns:150px 1fr;gap:12px} .comps span{color:var(--muted)}
+footer{padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.demos{grid-template-columns:1fr} .demo{padding:18px}}
+@media (max-width:560px){nav ul{gap:12px;font-size:12px} nav ul a{white-space:nowrap} .comps li{grid-template-columns:1fr;gap:2px} .grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a href="https://ticianapaura.github.io/" class="logo mono">~/ticiana<b>_</b></a>
+    <ul class="mono">
+      <li><a href="#demos">demos</a></li>
+      <li><a href="#screens">screens</a></li>
+      <li><a href="#design-system">design system</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <a class="back mono" href="https://ticianapaura.github.io/">← back to portfolio</a>
+    <p class="kicker mono">02 · AI · design + code · mobile</p>
+    <h1>Tammy · <span class="hl">AI Assistant</span> · White Label</h1>
+    <p class="lead">An AI assistant chat that hands the conversation over to a human agent when it needs to, built so any merchant can rebrand it by changing a name, an icon and four colors. I designed the flows, turned them into a design system and coded the components behind it.</p>
+    <div class="tags"><span class="tag b">AI</span><span class="tag b">Fintech</span><span class="tag">White label</span><span class="tag">Design system</span><span class="tag">React</span><span class="tag">Accessibility</span></div>
+    <p class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2zM9 20a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg><span>Here on GitHub you’ll see the <b>front-end side</b> of the project: both flows as working React apps, every screen as HTML and the design system behind them.</span></p>
+    <div class="btns">
+      <a class="btn primary" href="#demos">Play the demos</a>
+      <a class="btn" href="https://github.com/ticianapaura/tammy-ai-assistant" target="_blank" rel="noopener">front-end code ↗</a>
+    </div>
+  </div>
+</header>
+
+<section id="demos">
+  <div class="wrap">
+    <h2>live demos</h2>
+    <p class="sub">Both flows run as real React apps. Each one opens on its main flow: tap send to play, or open the full app to pick any of its nine flows.</p>
+    <div class="demos">
+      <div class="demo">
+        <div class="device"><iframe src="ai-conversation/#welcome" title="AI conversation with Tammy, playable demo"></iframe></div>
+        <h3 class="mono">AI conversation with Tammy</h3>
+        <p>Welcome, “Writing…”, answers with links, numbered quick replies, the 200-character limit and every error with its way out.</p>
+        <a class="mono" href="ai-conversation/" target="_blank" rel="noopener">all 9 flows ↗</a>
+      </div>
+      <div class="demo">
+        <div class="device"><iframe src="live-agent/#handoff" title="Live agent handoff, playable demo"></iframe></div>
+        <h3 class="mono">Live agent handoff</h3>
+        <p>Connecting, agents busy, the conversation with the agent, end of session and the satisfaction survey.</p>
+        <a class="mono" href="live-agent/" target="_blank" rel="noopener">all 9 flows ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <h2>screens</h2>
+    <p class="sub">Every state of both flows, coded as HTML from the design files. Open any screen to see it full size.</p>
+    <div class="tabs" role="tablist" aria-label="Flows">
+      <button type="button" class="tab" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="true">AI conversation · 13</button>
+      <button type="button" class="tab" role="tab" id="tab-live" aria-controls="panel-live" aria-selected="false" tabindex="-1">Live agent handoff · 18</button>
+    </div>
+    <div class="panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai">
+      <div class="grid">
+      <figure class="shot">
+        <a class="phone-mini" href="screens/main.html" target="_blank" rel="noopener" aria-label="Open screen: Welcome">
+          <iframe src="screens/main.html" title="Welcome" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">01</span> Welcome</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-filledout1.html" target="_blank" rel="noopener" aria-label="Open screen: Typing a message">
+          <iframe src="screens/tamy-filledout1.html" title="Typing a message" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">02</span> Typing a message</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc0.html" target="_blank" rel="noopener" aria-label="Open screen: First answer">
+          <iframe src="screens/tamy-cc0.html" title="First answer" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">03</span> First answer</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc8.html" target="_blank" rel="noopener" aria-label="Open screen: Writing…">
+          <iframe src="screens/tamy-cc8.html" title="Writing…" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">04</span> Writing…</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc1.html" target="_blank" rel="noopener" aria-label="Open screen: Answer with a link">
+          <iframe src="screens/tamy-cc1.html" title="Answer with a link" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">05</span> Answer with a link</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc2.html" target="_blank" rel="noopener" aria-label="Open screen: Long message sent">
+          <iframe src="screens/tamy-cc2.html" title="Long message sent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">06</span> Long message sent</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc3.html" target="_blank" rel="noopener" aria-label="Open screen: Character counter">
+          <iframe src="screens/tamy-cc3.html" title="Character counter" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">07</span> Character counter</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc4.html" target="_blank" rel="noopener" aria-label="Open screen: Limit exceeded">
+          <iframe src="screens/tamy-cc4.html" title="Limit exceeded" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">08</span> Limit exceeded</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc5.html" target="_blank" rel="noopener" aria-label="Open screen: 5 quick replies">
+          <iframe src="screens/tamy-cc5.html" title="5 quick replies" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">09</span> 5 quick replies</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc6.html" target="_blank" rel="noopener" aria-label="Open screen: 10 quick replies">
+          <iframe src="screens/tamy-cc6.html" title="10 quick replies" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">10</span> 10 quick replies</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc7.html" target="_blank" rel="noopener" aria-label="Open screen: Message sent">
+          <iframe src="screens/tamy-cc7.html" title="Message sent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">11</span> Message sent</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc9.html" target="_blank" rel="noopener" aria-label="Open screen: Session expired">
+          <iframe src="screens/tamy-cc9.html" title="Session expired" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">12</span> Session expired</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/tamy-cc10.html" target="_blank" rel="noopener" aria-label="Open screen: Session expired, retry">
+          <iframe src="screens/tamy-cc10.html" title="Session expired, retry" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">13</span> Session expired, retry</figcaption>
+      </figure>
+      </div>
+    </div>
+    <div class="panel" id="panel-live" role="tabpanel" aria-labelledby="tab-live" hidden>
+      <div class="grid">
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-00.html" target="_blank" rel="noopener" aria-label="Open screen: Connecting">
+          <iframe src="screens/live-00.html" title="Connecting" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">01</span> Connecting</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-01.html" target="_blank" rel="noopener" aria-label="Open screen: Session expired">
+          <iframe src="screens/live-01.html" title="Session expired" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">02</span> Session expired</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-02.html" target="_blank" rel="noopener" aria-label="Open screen: History didn’t load">
+          <iframe src="screens/live-02.html" title="History didn’t load" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">03</span> History didn’t load</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-03.html" target="_blank" rel="noopener" aria-label="Open screen: Request not completed">
+          <iframe src="screens/live-03.html" title="Request not completed" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">04</span> Request not completed</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-04.html" target="_blank" rel="noopener" aria-label="Open screen: Session expired, retry">
+          <iframe src="screens/live-04.html" title="Session expired, retry" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">05</span> Session expired, retry</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-10.html" target="_blank" rel="noopener" aria-label="Open screen: Availability not confirmed">
+          <iframe src="screens/live-10.html" title="Availability not confirmed" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">06</span> Availability not confirmed</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-11.html" target="_blank" rel="noopener" aria-label="Open screen: All agents busy">
+          <iframe src="screens/live-11.html" title="All agents busy" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">07</span> All agents busy</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-12.html" target="_blank" rel="noopener" aria-label="Open screen: Connecting to an agent">
+          <iframe src="screens/live-12.html" title="Connecting to an agent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">08</span> Connecting to an agent</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-13.html" target="_blank" rel="noopener" aria-label="Open screen: Agent connected">
+          <iframe src="screens/live-13.html" title="Agent connected" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">09</span> Agent connected</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-14.html" target="_blank" rel="noopener" aria-label="Open screen: Talking with the agent">
+          <iframe src="screens/live-14.html" title="Talking with the agent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">10</span> Talking with the agent</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-15.html" target="_blank" rel="noopener" aria-label="Open screen: New conversation">
+          <iframe src="screens/live-15.html" title="New conversation" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">11</span> New conversation</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-05.html" target="_blank" rel="noopener" aria-label="Open screen: Survey, rating">
+          <iframe src="screens/live-05.html" title="Survey, rating" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">12</span> Survey, rating</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-16.html" target="_blank" rel="noopener" aria-label="Open screen: Survey, color scale">
+          <iframe src="screens/live-16.html" title="Survey, color scale" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">13</span> Survey, color scale</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-06.html" target="_blank" rel="noopener" aria-label="Open screen: Survey, comment">
+          <iframe src="screens/live-06.html" title="Survey, comment" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">14</span> Survey, comment</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-07.html" target="_blank" rel="noopener" aria-label="Open screen: Survey, sending">
+          <iframe src="screens/live-07.html" title="Survey, sending" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">15</span> Survey, sending</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-17.html" target="_blank" rel="noopener" aria-label="Open screen: Survey, sending without comment">
+          <iframe src="screens/live-17.html" title="Survey, sending without comment" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">16</span> Survey, sending without comment</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-08.html" target="_blank" rel="noopener" aria-label="Open screen: Feedback sent">
+          <iframe src="screens/live-08.html" title="Feedback sent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">17</span> Feedback sent</figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="phone-mini" href="screens/live-09.html" target="_blank" rel="noopener" aria-label="Open screen: Feedback not sent">
+          <iframe src="screens/live-09.html" title="Feedback not sent" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        </a>
+        <figcaption><span class="mono">18</span> Feedback not sent</figcaption>
+      </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design-system">
+  <div class="wrap">
+    <h2>design system</h2>
+    <p class="sub">Tammy White Label: dark theme tokens, an Inter type scale and 14 accessible React components, documented one by one.</p>
+    <div class="ds">
+      <div class="box">
+        <h3>color tokens</h3>
+        <ul class="swatches">
+      <li class="sw"><span class="chip" style="background:#00b8d9"></span><span class="mono nm">color-primary<span class="wl">brand</span></span><span class="mono val">#00b8d9</span></li>
+      <li class="sw"><span class="chip" style="background:#28d2eb"></span><span class="mono nm">color-primary-light<span class="wl">brand</span></span><span class="mono val">#28d2eb</span></li>
+      <li class="sw"><span class="chip" style="background:#e5ff34"></span><span class="mono nm">color-accent<span class="wl">brand</span></span><span class="mono val">#e5ff34</span></li>
+      <li class="sw"><span class="chip" style="background:#9fbf2a"></span><span class="mono nm">color-accent-muted<span class="wl">brand</span></span><span class="mono val">#9fbf2a</span></li>
+      <li class="sw"><span class="chip" style="background:#d94a5c"></span><span class="mono nm">color-danger</span><span class="mono val">#d94a5c</span></li>
+      <li class="sw"><span class="chip" style="background:#5dade2"></span><span class="mono nm">color-info</span><span class="mono val">#5dade2</span></li>
+      <li class="sw"><span class="chip" style="background:#6cb6ff"></span><span class="mono nm">color-link</span><span class="mono val">#6cb6ff</span></li>
+      <li class="sw"><span class="chip" style="background:#d94a5c"></span><span class="mono nm">color-rating-1</span><span class="mono val">#d94a5c</span></li>
+      <li class="sw"><span class="chip" style="background:#e5ff34"></span><span class="mono nm">color-rating-3</span><span class="mono val">#e5ff34</span></li>
+      <li class="sw"><span class="chip" style="background:#22c55e"></span><span class="mono nm">color-rating-5</span><span class="mono val">#22c55e</span></li>
+      <li class="sw"><span class="chip" style="background:#1a1a1a"></span><span class="mono nm">color-surface-header</span><span class="mono val">#1a1a1a</span></li>
+      <li class="sw"><span class="chip" style="background:#222222"></span><span class="mono nm">color-surface</span><span class="mono val">#222222</span></li>
+      <li class="sw"><span class="chip" style="background:#262626"></span><span class="mono nm">color-surface-bubble</span><span class="mono val">#262626</span></li>
+      <li class="sw"><span class="chip" style="background:#2a2a2a"></span><span class="mono nm">color-surface-input</span><span class="mono val">#2a2a2a</span></li>
+      <li class="sw"><span class="chip" style="background:#ffffff"></span><span class="mono nm">color-text-strong</span><span class="mono val">#ffffff</span></li>
+      <li class="sw"><span class="chip" style="background:#e6edf3"></span><span class="mono nm">color-text</span><span class="mono val">#e6edf3</span></li>
+        </ul>
+        <p style="margin-top:14px;font-size:13px;color:var(--muted)">41 color tokens in total · <a href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/tokens.json" target="_blank" rel="noopener">tokens.json ↗</a></p>
+      </div>
+      <div class="box">
+        <h3>type scale · Inter</h3>
+        <ul class="typo">
+      <li><span class="sample" style="font-size:32px;line-height:38px;font-weight:700">Welcome!</span><span class="mono meta">display · 32px/38px · 700</span></li>
+      <li><span class="sample" style="font-size:18px;line-height:22px;font-weight:400">I&#x27;m Tammy, your AI assistant, how can I help you today?</span><span class="mono meta">subtitle · 18px/22px · 400</span></li>
+      <li><span class="sample" style="font-size:16px;line-height:20px;font-weight:600">Tammy</span><span class="mono meta">assistant-name · 16px/20px · 600</span></li>
+      <li><span class="sample" style="font-size:14px;line-height:20px;font-weight:400">Hey Tammy, I need to update my processing units</span><span class="mono meta">body · 14px/20px · 400</span></li>
+      <li><span class="sample" style="font-size:14px;line-height:20px;font-weight:600">Thank you for your feedback</span><span class="mono meta">body-strong · 14px/20px · 600</span></li>
+      <li><span class="sample" style="font-size:12px;line-height:16px;font-weight:400">All agents are currently busy.</span><span class="mono meta">caption · 12px/16px · 400</span></li>
+        </ul>
+      </div>
+      <div class="box" style="grid-column:1/-1">
+        <h3>components</h3>
+        <ul class="comps">
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/AssistantMessage.md" target="_blank" rel="noopener">AssistantMessage</a><span>An answer from Tammy or from a live agent: the assistant mark, the text, and thumbs to rate it.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/Banner.md" target="_blank" rel="noopener">Banner</a><span>A message about the conversation itself: an error with a way out, or the security notice.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/Button.md" target="_blank" rel="noopener">Button</a><span>The few buttons outside the Composer.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/ChatHeader.md" target="_blank" rel="noopener">ChatHeader</a><span>The top bar of the chat window: the assistant&#x27;s name with its mark, and the minimize and close buttons.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/Composer.md" target="_blank" rel="noopener">Composer</a><span>Where the person writes. Grows with the text, counts characters, and blocks sending past the limit.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/FeedbackTextarea.md" target="_blank" rel="noopener">FeedbackTextarea</a><span>The free-text box inside the satisfaction survey.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/OptionButtons.md" target="_blank" rel="noopener">OptionButtons</a><span>Numbered quick replies under an answer that lists options.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/RatingScale.md" target="_blank" rel="noopener">RatingScale</a><span>The 1–5 satisfaction scale, from &quot;Very unsatisfied&quot; to &quot;Very satisfied&quot;.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/SatisfactionSurvey.md" target="_blank" rel="noopener">SatisfactionSurvey</a><span>The card shown after a live chat session ends.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/StatusPill.md" target="_blank" rel="noopener">StatusPill</a><span>Marks a change in who the person is talking to.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/SystemNote.md" target="_blank" rel="noopener">SystemNote</a><span>A centered note from the system, not from a person: queue status, ticket updates, a new conversation starting.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/TypingIndicator.md" target="_blank" rel="noopener">TypingIndicator</a><span>&quot;Writing...&quot; while Tammy prepares an answer.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/UserMessage.md" target="_blank" rel="noopener">UserMessage</a><span>What the person wrote, right-aligned in a bordered bubble.</span></li>
+      <li><a class="mono" href="https://github.com/ticianapaura/tammy-ai-assistant/blob/main/design-system/components/Welcome.md" target="_blank" rel="noopener">Welcome</a><span>The empty state before the first message: greeting plus the security notice.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">
+    <span>© <span id="y"></span> Ticiana Paura</span>
+    <a href="https://ticianapaura.github.io/">back to portfolio ↗</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+// Tabs
+var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+function select(t) {
+  tabs.forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  t.focus(); fit();
+}
+tabs.forEach(function (t, i) {
+  t.addEventListener('click', function () { select(t); });
+  t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length]); } });
+});
+// Scale the 390px screens into their thumbnails, and the prototype on small screens.
+function fit() {
+  document.querySelectorAll('.phone-mini').forEach(function (a) { var k = a.clientWidth / 390; a.querySelector('iframe').style.transform = 'scale(' + k + ')'; });
+  document.querySelectorAll('.device').forEach(function (d) { d.querySelector('iframe').style.transform = 'scale(' + (d.clientWidth / 390) + ')'; });
+}
+window.addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>
