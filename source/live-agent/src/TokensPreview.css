@@ -1,0 +1,62 @@
+/* Layout values here are temporary and preview-only, not design tokens. */
+
+/* Body styles come from styles/base.css. */
+
+.preview {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.preview h1,
+.preview h2 {
+  color: var(--color-text-strong);
+}
+
+.preview-note {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.swatch-color {
+  height: 72px;
+  border: 1px solid #555555;
+}
+
+.swatch-empty {
+  background: repeating-linear-gradient(45deg, #333333 0 8px, #444444 8px 16px);
+}
+
+.type-sample {
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.type-size {
+  margin: 8px 0;
+}
+
+.radius-sample {
+  height: 72px;
+  background: var(--color-surface-input);
+  border: 1px solid var(--color-primary);
+}
+
+.space-sample {
+  height: 24px;
+  background: var(--color-primary);
+}

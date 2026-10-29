@@ -1,0 +1,97 @@
+/* Design tokens — white-label AI assistant (Tammy)
+ *
+ * Mirrors the "Tammy White Label" design system: same names, same values.
+ * Dark is the only designed theme. A merchant (or a light theme) overrides
+ * these names under :root[data-theme='…'] without touching components.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* Brand */
+  --color-primary: #00b8d9; /* Marca del asistente: borde del input y del textarea, ícono de Tammy. Como borde sobre color-surface y color-surface-input. */
+  --color-primary-light: #28d2eb; /* Nombre del asistente en el header y pulgares de feedback, sobre color-surface-header y color-surface. */
+  --color-accent: #e5ff34; /* La acción principal: botón enviar activo y botón Send feedback. Siempre con color-on-accent encima. */
+  --color-accent-muted: #9fbf2a; /* Borde de la burbuja del usuario. */
+  --color-on-accent: #000000; /* Texto e íconos sobre color-accent, color-rating-3, color-rating-4, color-rating-5 y color-rating-selected. */
+
+  /* Feedback */
+  --color-danger: #d94a5c; /* Errores: borde y ícono de banners de error, borde del input pasado de largo, botones Try again (texto blanco encima: 4.1:1, apenas debajo de 4.5:1). Como texto solo en íconos; el texto de error va en color-text. */
+  --color-danger-surface: #2a2426; /* Fondo de banners de error y del input con error. */
+  --color-danger-control: #413d3f; /* Fondo del botón enviar cuando el input tiene error. */
+  --color-danger-icon: #ff6161; /* Ícono grande de la encuesta: Your feedback hasn't been sent, sobre color-surface-card. */
+  --color-success-icon: #4cff34; /* Ícono grande de la encuesta: Thank you for your feedback, sobre color-surface-card. */
+  --color-info: #5dade2; /* Banner de seguridad (borde y caja del ícono; el ícono blanco encima queda en 2.5:1) y números de las opciones (5.8:1 sobre color-surface-input). */
+  --color-info-surface: #25323b; /* Fondo del banner de seguridad. */
+  --color-link: #6cb6ff; /* Links dentro de las respuestas, subrayados, sobre color-surface. */
+
+  /* Satisfaction scale */
+  --color-rating-1: #d94a5c; /* Escala de color, 1 (Very unsatisfied). Texto en color-text-strong. */
+  --color-rating-2: #e5734f; /* Escala de color, 2. Texto en color-on-accent. */
+  --color-rating-3: #e5ff34; /* Escala de color, 3. Texto en color-on-accent. */
+  --color-rating-4: #c0ff58; /* Escala de color, 4. Texto en color-on-accent. */
+  --color-rating-5: #22c55e; /* Escala de color, 5 (Very satisfied). Texto en color-on-accent. */
+  --color-rating-selected: #84cc16; /* Escala monocromática: el número elegido, con color-on-accent. */
+  --color-rating-idle: #1f1f1f; /* Escala monocromática: números sin elegir. */
+  --color-rating-idle-text: #5a6068; /* Números sin elegir sobre color-rating-idle. Medido del diseño: 2.6:1, debajo de 4.5:1, a revisar. */
+
+  /* Surfaces, darkest to lightest */
+  --color-surface-card: #141414; /* Tarjeta de la encuesta de satisfacción. */
+  --color-surface-header: #1a1a1a; /* Header del chat y avisos del sistema. */
+  --color-surface-disabled: #1f1f1f; /* Input deshabilitado (sesión terminada, conectando con un agente). */
+  --color-surface: #222222; /* Fondo del chat. */
+  --color-surface-bubble: #262626; /* Burbuja del usuario. */
+  --color-surface-input: #2a2a2a; /* Input, textarea y botones de opciones. */
+  --color-control: #3a3a3a; /* Botones redondos del header y botón enviar inactivo. */
+
+  /* Text */
+  --color-text-strong: #ffffff; /* Respuestas del asistente y títulos, sobre color-surface y color-surface-card. */
+  --color-text: #e6edf3; /* Texto del usuario, texto escrito en el input y texto de banners; sobre color-surface-bubble, color-surface-input, color-danger-surface y color-info-surface. */
+  --color-text-heading: #e0e0e0; /* Pantalla de bienvenida (Welcome! y subtítulo), sobre color-surface. */
+  --color-text-secondary: #d0d0d0; /* Avisos del sistema, sobre color-surface-header. */
+  --color-text-muted: #8a8a8a; /* Pastilla The live chat session has ended (4.6:1 sobre color-surface) y contador de caracteres (4.2:1 sobre color-surface-input, apenas debajo de 4.5:1). */
+  --color-text-placeholder: #626872; /* Placeholder del input y del textarea, sobre color-surface-input. Medido de la hoja de componentes (en las pantallas mide #717171). 2.6:1, debajo de 4.5:1, a revisar. */
+  --color-icon-muted: #8a8f98; /* Íconos sobre color-control (minimizar, cerrar, enviar inactivo). */
+
+  /* Borders & dividers */
+  --color-border: #393939; /* Borde de los botones de opciones. */
+  --color-border-strong: #8a8a8a; /* Borde de la pastilla divisora. */
+  --color-border-emphasis: #ffffff; /* Borde de la pastilla Connecting you to a support agent. */
+  --color-border-rating: #cdd2c8; /* Contenedor de la escala 1–5. */
+  --color-border-disabled: #4f555d; /* Borde, placeholder e ícono del input deshabilitado. */
+  --color-divider: #565656; /* Líneas a los costados de la pastilla divisora. */
+
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 12px; /* caption: avisos del sistema, contador, etiquetas de la escala */
+  --font-size-sm: 14px; /* body: mensajes, input, banners */
+  --font-size-md: 16px; /* nombre del asistente */
+  --font-size-lg: 18px; /* subtítulo de bienvenida */
+  --font-size-xl: 32px; /* "Welcome!" */
+  --line-height-xs: 16px;
+  --line-height-sm: 20px;
+  --line-height-md: 20px;
+  --line-height-lg: 22px;
+  --line-height-xl: 38px;
+
+  /* Spacing */
+  --space-1: 4px; /* Entre el ícono y el texto de un botón. */
+  --space-2: 8px; /* Entre botones de opciones; padding interno de banners. */
+  --space-3: 12px; /* Padding de burbujas e input; entre el ícono del asistente y el texto. */
+  --space-4: 16px; /* Margen lateral del chat; padding del header. */
+  --space-6: 24px; /* Entre mensajes de la conversación. */
+
+  /* Sizes */
+  --size-header: 52px; /* Alto del header del chat. */
+  --size-input: 52px; /* Alto del input en una línea. */
+  --size-control: 24px; /* Botones redondos del header. */
+  --size-send: 32px; /* Botón enviar. */
+  --size-option: 44px; /* Botones de opciones numeradas. */
+
+  /* Radii */
+  --radius-xs: 2px; /* Banners, avisos del sistema, botón Try again. */
+  --radius-sm: 4px; /* Burbujas, input, textarea, botones de opciones, Send feedback. */
+  --radius-md: 12px; /* Contenedor de la escala 1–5. */
+  --radius-lg: 16px; /* Tarjeta de la encuesta. */
+  --radius-full: 999px; /* Pastillas, botones redondos, números de la escala. */
+}

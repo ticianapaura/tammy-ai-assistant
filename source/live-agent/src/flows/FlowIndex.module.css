@@ -1,0 +1,40 @@
+/* Layout values here are temporary and preview-only, not design tokens. */
+.index {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  color: var(--color-text);
+}
+
+.index h1 {
+  margin: 0 0 8px;
+  line-height: 1.15;
+  color: var(--color-text-strong);
+}
+
+.note {
+  margin: 0 0 24px;
+  color: var(--color-text-muted);
+}
+
+.index a {
+  color: var(--color-link);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.list span {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,10 @@
+.note {
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-xs);
+  background: var(--color-surface-header);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: 14px;
+  text-align: center;
+}

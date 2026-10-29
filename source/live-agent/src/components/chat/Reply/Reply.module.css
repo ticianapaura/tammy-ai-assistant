@@ -1,0 +1,56 @@
+.reply {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: var(--space-3);
+  color: var(--color-text-strong);
+}
+
+.icon {
+  color: var(--color-primary);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.body p,
+.body ol {
+  margin: 0;
+}
+
+.body ol {
+  padding-left: 20px;
+}
+
+.body a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 12px;
+  color: var(--color-primary-light);
+}
+
+.thumbs button {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Not in the designs yet: the chosen thumb fills in. */
+.thumbs button[aria-pressed='true'] path {
+  fill: currentColor;
+}
