@@ -36,6 +36,7 @@
   --color-rating-idle-text: #5a6068; /* Números sin elegir sobre color-rating-idle. Medido del diseño: 2.6:1, debajo de 4.5:1, a revisar. */
 
   /* Surfaces, darkest to lightest */
+  --color-page: #0b0b0b; /* Demo page behind the chat panel and the list of flows; darker than every surface so the panel stands out. */
   --color-surface-card: #141414; /* Tarjeta de la encuesta de satisfacción. */
   --color-surface-header: #1a1a1a; /* Header del chat y avisos del sistema. */
   --color-surface-disabled: #1f1f1f; /* Input deshabilitado (sesión terminada, conectando con un agente). */
