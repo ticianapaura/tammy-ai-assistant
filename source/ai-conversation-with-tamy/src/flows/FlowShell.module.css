@@ -50,13 +50,21 @@
   margin: 0 auto;
 }
 
-/* On wider screens the panel floats on the page, like the chat widget would. */
+/* On wider screens the panel keeps the mobile proportions (390 × 844):
+   full height up to 844px, and narrower if the window is short. */
 @media (min-width: 480px) {
   .shell {
+    justify-content: center;
     padding-bottom: var(--space-4);
   }
 
+  .bar {
+    width: min(390px, max(320px, (100dvh - 76px) * 390 / 844));
+  }
+
   .panel {
+    width: min(390px, max(320px, (100dvh - 76px) * 390 / 844));
+    max-height: 844px;
     overflow: hidden;
     border: 1px solid var(--color-surface-input);
     border-radius: var(--radius-lg);
